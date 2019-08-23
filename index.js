@@ -182,9 +182,9 @@ function getStats(searchTerm) {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
-		"x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
-	}
-})
+    "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
+  },
+}, {mode: "no-cors"})
 .then(response => response.json())
 .then(stats => displayStats(stats,searchTerm))
 .catch(err => {
@@ -194,12 +194,13 @@ function getStats(searchTerm) {
 
 function getType(type) {
     fetch("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", {
+      
        "method": "GET",
        "headers": {
            "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
            "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
-       }
-   })
+       },
+   }, {mode: "no-cors"})
    .then(response => response.json())
    .then(responseJson => displayType(responseJson,type))
    .catch(err => {
@@ -213,8 +214,8 @@ function getFastMoves(type) {
        "headers": {
            "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
            "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
-       }
-   })
+       },
+   }, {mode: "no-cors"})
    .then(response => response.json())
    .then(fastMoves => displayFastMoves(fastMoves,type))
    .catch(err => {
@@ -228,8 +229,8 @@ function getChargedMoves(type) {
        "headers": {
            "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
            "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
-       }
-   })
+       },
+   }, {mode: "no-cors"})
    .then(response => response.json())
    .then(chargedMoves => displayChargedMoves(chargedMoves,type))
    .catch(err => {
@@ -243,8 +244,8 @@ function getMaxCP(search) {
        "headers": {
            "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
            "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
-       }
-   })
+       },
+   }, {mode: "no-cors"})
    .then(response => response.json())
    .then(maxCP => displayMaxCP(maxCP,search))
    .catch(err => {
