@@ -12,13 +12,12 @@ function displayStats(responseJson,searchTerm) {
   $('#stats-list').empty();
   $('.pokemonImage').empty();
   const search=upperCase(searchTerm);
+  console.log(`getStats run`);
   let id=0;
   for (let i = 0; i < responseJson.length; i++){
       
     if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
         id=responseJson[i].pokemon_id;
-        console.log(`aa`);
-        console.log(id);
         if (id<10){
             console.log(id);
             $('.pokemonImage').append(
@@ -53,9 +52,9 @@ function displayStats(responseJson,searchTerm) {
 
 function displayType(responseJson,type) {
     // if there are previous results, remove them
-    console.log(responseJson);
     $('#type-list').empty();
     // iterate through the items array
+    console.log(`getType run`);
     const searchTerm = upperCase($('#js-search-term').val());
     for (let i = 0; i < responseJson.length; i++){
         
@@ -104,6 +103,7 @@ function checkWeatherBoost(type, weatherBoost){
 function displayWeatherBoost(type) {
     // if there are previous results, remove them
     $('#weather-boost').empty();
+    console.log(`get weather boost run`);
     let weatherBoost=[];
     for(let i=0;i<type.length;i++){
         checkWeatherBoost(type[i],weatherBoost);
@@ -121,6 +121,7 @@ function displayWeatherBoost(type) {
 function displayFastMoves(responseJson,type) {
     // if there are previous results, remove them
     $('#fastMoves').empty();
+    console.log(`get fastMoves run`);
     let fastMoves=[];
     for(let j=0;j<type.length;j++){
       for(let i=0;i<responseJson.length;i++){
@@ -141,6 +142,7 @@ function displayFastMoves(responseJson,type) {
 function displayChargedMoves(responseJson,type) {
     // if there are previous results, remove them
     $('#chargedMoves').empty();
+    console.log(`get chargedMoves run`);
     let chargedMoves=[];
     for(let j=0;j<type.length;j++){
       for(let i=0;i<responseJson.length;i++){
@@ -161,6 +163,7 @@ function displayChargedMoves(responseJson,type) {
 function displayMaxCP(responseJson,search) {
     // if there are previous results, remove them
     $('#maxCP').empty();
+    console.log(`get maxCP run`);
     for (let i = 0; i < responseJson.length; i++){
         
       if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
@@ -254,7 +257,6 @@ function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
-    let name="";
     let type="";
     getStats(searchTerm);
     getType(type);
