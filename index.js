@@ -10,22 +10,45 @@ function upperCase(string)
 function displayStats(responseJson,searchTerm) {
   // if there are previous results, remove them
   $('#stats-list').empty();
+  $('.pokemonImage').empty();
   const search=upperCase(searchTerm);
+  let id=0;
   for (let i = 0; i < responseJson.length; i++){
       
     if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
-    $('#stats-list').append(
-      `<li>
-        <p>name: ${responseJson[i].pokemon_name}</p>
-        <p>id: ${responseJson[i].pokemon_id}</p>
-        <p>base stamina: ${responseJson[i].base_stamina}</p>
-        <p>base attack: ${responseJson[i].base_attack}</p>
-        <p>base defense: ${responseJson[i].base_defense}</p> 
-      </li>`
-    )};
+        id=responseJson[i].pokemon_id;
+        console.log(`aa`);
+        console.log(id);
+        if (id<10){
+            console.log(id);
+            $('.pokemonImage').append(
+                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${id}.png" height="40" width="40"></img>`
+            )
+        }
+        else if (id<100){
+            $('.pokemonImage').append(
+                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id}.png" height="40" width="40"></img>`
+            )
+        }
+        else{
+            $('.pokemonImage').append(
+                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png" height="40" width="40"></img>`
+            )
+        }
+      $('#stats-list').append(
+        `<li>
+        <p>Name: ${responseJson[i].pokemon_name}</p>
+        <p>Id: ${responseJson[i].pokemon_id}</p>
+        <p>Base stamina: ${responseJson[i].base_stamina}</p>
+        <p>Base attack: ${responseJson[i].base_attack}</p>
+        <p>Base defense: ${responseJson[i].base_defense}</p> 
+        </li>`
+      )
+    };
   }
   //display the results section  
   $('#results').removeClass('hidden');
+  getMaxCP(search);
 };
 
 function displayType(responseJson,type) {
@@ -40,7 +63,7 @@ function displayType(responseJson,type) {
           type=responseJson[i].type;
       $('#type-list').append(
         `<li>
-          <p>type: ${responseJson[i].type}</p>
+          <p>Type: ${responseJson[i].type}</p>
         </li>`
       
       )};
@@ -87,7 +110,7 @@ function displayWeatherBoost(type) {
     }
     $('#type-list').append(
         `<li>
-          <p>weather boost: ${weatherBoost} </p>
+          <p>Weather boost: ${weatherBoost} </p>
         </li>`
       
     );
@@ -134,6 +157,22 @@ function displayChargedMoves(responseJson,type) {
     //display the results section  
     $('#results').removeClass('hidden');
 };
+
+function displayMaxCP(responseJson,search) {
+    // if there are previous results, remove them
+    $('#maxCP').empty();
+    for (let i = 0; i < responseJson.length; i++){
+        
+      if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
+      $('#maxCP').append(
+        `<li>
+          <p>Max CP: ${responseJson[i].max_cp}</p>
+        </li>`
+      )};
+    }
+    //display the results section  
+    $('#results').removeClass('hidden');
+  };
 
 function getStats(searchTerm) {
  fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
@@ -195,13 +234,28 @@ function getChargedMoves(type) {
    }); 
 }
 
+function getMaxCP(search) {
+    fetch("https://pokemon-go1.p.rapidapi.com/pokemon_max_cp.json", {
+       "method": "GET",
+       "headers": {
+           "x-rapidapi-host": "pokemon-go1.p.rapidapi.com",
+           "x-rapidapi-key": "935ab9b124msh8b93394ade8e428p1fad5cjsn69a9af23101c"
+       }
+   })
+   .then(response => response.json())
+   .then(maxCP => displayMaxCP(maxCP,search))
+   .catch(err => {
+       console.log(err);
+   }); 
+}
+
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
-   // const maxResults = $('#js-max-results').val();
-   let type="";
+    let name="";
+    let type="";
     getStats(searchTerm);
     getType(type);
   });
