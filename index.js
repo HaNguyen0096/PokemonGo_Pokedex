@@ -21,28 +21,29 @@ function displayStats(responseJson,searchTerm) {
         if (id<10){
             console.log(id);
             $('.pokemonImage').append(
-                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${id}.png" height="40" width="40"></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${id}.png" ></img>`
             )
         }
         else if (id<100){
             $('.pokemonImage').append(
-                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id}.png" height="40" width="40"></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id}.png" height="40" width="40"></img>`
             )
         }
         else{
             $('.pokemonImage').append(
-                `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png" height="40" width="40"></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png" height="40" width="40"></img>`
             )
         }
       $('#stats-list').append(
         `<li>
         <p>Name: ${responseJson[i].pokemon_name}</p>
-        <p>Id: ${responseJson[i].pokemon_id}</p>
+        <p>ID: ${responseJson[i].pokemon_id}</p>
         <p>Base stamina: ${responseJson[i].base_stamina}</p>
         <p>Base attack: ${responseJson[i].base_attack}</p>
         <p>Base defense: ${responseJson[i].base_defense}</p> 
         </li>`
       )
+      break;
     };
   }
   //display the results section  
@@ -59,13 +60,14 @@ function displayType(responseJson,type) {
     for (let i = 0; i < responseJson.length; i++){
         
       if((searchTerm===responseJson[i].pokemon_name)||(searchTerm==responseJson[i].pokemon_id)){
-          type=responseJson[i].type;
-      $('#type-list').append(
-        `<li>
-          <p>Type: ${responseJson[i].type}</p>
-        </li>`
-      
-      )};
+        type=responseJson[i].type;
+        $('#type-list').append(
+          `<li>
+            <p>Type: ${responseJson[i].type}</p>
+          </li>`
+        )
+        break;
+      };
     }
     //display the results section  
     $('#results').removeClass('hidden');
@@ -167,11 +169,13 @@ function displayMaxCP(responseJson,search) {
     for (let i = 0; i < responseJson.length; i++){
         
       if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
-      $('#maxCP').append(
-        `<li>
-          <p>Max CP: ${responseJson[i].max_cp}</p>
-        </li>`
-      )};
+        $('#maxCP').append(
+          `<li>
+            <p>Max CP: ${responseJson[i].max_cp}</p>
+          </li>`
+        )
+        break;
+      };
     }
     //display the results section  
     $('#results').removeClass('hidden');
