@@ -12,13 +12,14 @@
 <body>
     <div class="container">
         <img class ="logo" src="logo2x.png">
-        <h1>Welcome to Pokemon Go pokedex</h1>
-
+        <div class = "welcome">
+            <h1>Welcome to Pokemon Go pokedex</h1>
+        </div>
         <form id="js-form">
             <label for="search-term">Enter a pokemon name or pokemon id (1 to 493):</label><br>
             <input type="text" name="search-term" id="js-search-term" min="1" max="493" required><br>
 
-            <input type="submit" value="Go!">
+            <button type="button">GO!</button>
         </form>
 
         <p id="js-error-message" class="error-message"></p>

@@ -3,7 +3,7 @@
   }
   
   body {
-    background: url(bg3.jpg) no-repeat;
+    background: url(bg1.jpg) no-repeat;
     background-size: cover;
     background-attachment: scroll;
 
@@ -17,32 +17,48 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 50%;
   }
   h1 {
     text-align: center;
-    font-size: 40px;
-    background: -webkit-linear-gradient(#eee, #333);
+    font-size: 20px;
+    background: -webkit-linear-gradient(#eee, #ffff00);
+    background-clip: padding-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .welcome{
+    border: white;
+    border-width: 1px;
+    border-style: solid;
+    background-color: rgba(0, 0, 0, 0.65);
+    border-radius: 35px;
+  }
 
   form{
+    margin-top: 40px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
   }
   
-  button, input[type="text"] {
-    padding: 5px;
+  
+  input[type="text"] {
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 3px;
     margin: 20px;
     text-align: center;
-  }
-
-  input[type="submit"]{
-    padding: 8px;
+    font-size: 15px;
   }
   
+  button{
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
   button:hover {
     cursor: pointer;
+    background-color: yellow;
   }
 
   h2{
@@ -85,26 +101,53 @@
       list-style: none;
   }
 
-  @media screen and (min-width: 900px) {
-    h1 {
-      font-size: 60px;
-      background: -webkit-linear-gradient(#eee, #333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+  @media screen and (min-width: 700px) {
+    .welcome{
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
     }
+    .logo{
+      width: 60%;
+    }
+    h1{
+      font-size: 30px;
+    }
+    form label{
+      font-size: 27px;
+      color:#1f263b;
+    }
+    input[type="text"]{
+      font-size: 20px;
+    }
+    button{
+      width: 50px;
+      height: 35px;
+    }
+  }
 
-    .resultImage{
-      width: 40%;
-      float:left;
+  @media screen and (min-width: 1000px) {
+    .welcome{
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
     }
-    #results ul{
-
-      margin: 0;
-      padding: 0;
+    .logo{
+      width: 60%;
     }
-    .list-results li{
-      margin: 0;
-      padding: 0;
-      display: inline;
+    h1{
+      font-size: 45px;
+    }
+    form label{
+      font-size: 37px;
+      color:#1f263b;
+    }
+    input[type="text"]{
+      font-size: 30px;
+    }
+    button{
+      width: 70px;
+      height: 55px;
+      font-size: 27px;
     }
   }

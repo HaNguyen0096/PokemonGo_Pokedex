@@ -21,17 +21,17 @@ function displayStats(responseJson,searchTerm) {
         if (id<10){
             console.log(id);
             $('.pokemonImage').append(
-                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${id}.png" ></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${id}.png"></img>`
             )
         }
         else if (id<100){
             $('.pokemonImage').append(
-                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id}.png" height="40" width="40"></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${id}.png"></img>`
             )
         }
         else{
             $('.pokemonImage').append(
-                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png" height="40" width="40"></img>`
+                `<img class="resultImage" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png"></img>`
             )
         }
       $('#stats-list').append(
