@@ -14,8 +14,11 @@ function displayStats(responseJson,searchTerm) {
   const search=upperCase(searchTerm);
   console.log(`getStats run`);
   let id=0;
-  for (let i = 0; i < responseJson.length; i++){
-      
+  for (let i = 0; i < responseJson.length+1; i++){
+    if(i===responseJson.length){
+      alert("Please enter a number between 1 & 493 or a correct pokemon name!");
+      break;
+    }
     if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
         id=responseJson[i].pokemon_id;
         if (id<10){
@@ -44,7 +47,7 @@ function displayStats(responseJson,searchTerm) {
         </li>`
       )
       break;
-    };
+    }
   }
   //display the results section  
   $('#results').removeClass('hidden');
@@ -70,10 +73,15 @@ function displayType(responseJson,type) {
       };
     }
     //display the results section  
-    $('#results').removeClass('hidden');
+  
+    if(type!==""){
     displayWeatherBoost(type);
     getFastMoves(type);
     getChargedMoves(type);
+    }
+    else{
+      $('#results').empty();
+    }
 };
 
 function checkWeatherBoost(type, weatherBoost){
@@ -117,7 +125,7 @@ function displayWeatherBoost(type) {
       
     );
     //display the results section  
-    $('#results').removeClass('hidden');
+    
 };
 
 function displayFastMoves(responseJson,type) {
@@ -138,7 +146,7 @@ function displayFastMoves(responseJson,type) {
         </li>` 
       );
     //display the results section  
-    $('#results').removeClass('hidden');
+    
 };
 
 function displayChargedMoves(responseJson,type) {
@@ -159,7 +167,7 @@ function displayChargedMoves(responseJson,type) {
         </li>` 
       );
     //display the results section  
-    $('#results').removeClass('hidden');
+    
 };
 
 function displayMaxCP(responseJson,search) {
@@ -178,7 +186,7 @@ function displayMaxCP(responseJson,search) {
       };
     }
     //display the results section  
-    $('#results').removeClass('hidden');
+    
   };
 
 function getStats(searchTerm) {
