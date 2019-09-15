@@ -7,6 +7,7 @@ function upperCase(string)
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+//Display all Stats of pokemon including pokemon image, name, id, base attack, base defense and base stamina
 function displayStats(responseJson,searchTerm) {
   // if there are previous results, remove them
   $('#stats-list').empty();
@@ -15,12 +16,16 @@ function displayStats(responseJson,searchTerm) {
   console.log(`getStats run`);
   let id=0;
   for (let i = 0; i < responseJson.length+1; i++){
+    //if after the loop is done and there is no pokemon found, return an error message
     if(i===responseJson.length){
       alert("Please enter a number between 1 & 493 or a correct pokemon name!");
       break;
     }
-    if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
+    //if found a pokemon, get its stats
+    else if((search===responseJson[i].pokemon_name)||(search==responseJson[i].pokemon_id)){
         id=responseJson[i].pokemon_id;
+
+        //display image of pokemon
         if (id<10){
             console.log(id);
             $('.pokemonImage').append(
@@ -54,6 +59,7 @@ function displayStats(responseJson,searchTerm) {
   getMaxCP(search);
 };
 
+//Display all infomation of pokemon that depend on its type include weather boost, fast move and charge move
 function displayType(responseJson,type) {
     // if there are previous results, remove them
     $('#type-list').empty();
@@ -73,17 +79,22 @@ function displayType(responseJson,type) {
       };
     }
     //display the results section  
-  
+    $('#results').removeClass('hidden');
+    //check if type has change, if yes, display pokemon info
     if(type!==""){
     displayWeatherBoost(type);
     getFastMoves(type);
     getChargedMoves(type);
     }
+
+    //if no, which mean the search input is not correct, empty the result
     else{
-      $('#results').empty();
+      $('#fastMoves').empty();
+      $('#chargedMoves').empty();
     }
 };
 
+//add weather boost type depend on pokemon type into a string
 function checkWeatherBoost(type, weatherBoost){
     if(type==="Fire" || type==="Ground" || type==="Grass"){
         weatherBoost.push(' Clear');
@@ -110,6 +121,7 @@ function checkWeatherBoost(type, weatherBoost){
     }
 }
 
+//display weatherboost
 function displayWeatherBoost(type) {
     // if there are previous results, remove them
     $('#weather-boost').empty();
@@ -125,9 +137,11 @@ function displayWeatherBoost(type) {
       
     );
     //display the results section  
-    
+    $('#results').removeClass('hidden');
 };
 
+
+//create a fastmove string, then add all the fastmoves available into that string depend on pokemon type
 function displayFastMoves(responseJson,type) {
     // if there are previous results, remove them
     $('#fastMoves').empty();
@@ -146,9 +160,10 @@ function displayFastMoves(responseJson,type) {
         </li>` 
       );
     //display the results section  
-    
+    $('#results').removeClass('hidden');
 };
 
+//create a chargemoves string, then add all the chargemoves available into that string depend on pokemon type
 function displayChargedMoves(responseJson,type) {
     // if there are previous results, remove them
     $('#chargedMoves').empty();
@@ -167,7 +182,7 @@ function displayChargedMoves(responseJson,type) {
         </li>` 
       );
     //display the results section  
-    
+    $('#results').removeClass('hidden');
 };
 
 function displayMaxCP(responseJson,search) {
@@ -186,7 +201,7 @@ function displayMaxCP(responseJson,search) {
       };
     }
     //display the results section  
-    
+    $('#results').removeClass('hidden');
   };
 
 function getStats(searchTerm) {

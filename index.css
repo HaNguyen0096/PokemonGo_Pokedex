@@ -156,3 +156,33 @@
       font-size: 27px;
     }
   }
+
+  @media screen and (min-width: 1200px) {
+    .welcome{
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .logo{
+      width: 60%;
+    }
+    h1{
+      font-size: 45px;
+    }
+    form label{
+      font-size: 37px;
+      color:#1f263b;
+    }
+    input[type="text"]{
+      font-size: 30px;
+    }
+    input[type="submit"]{
+      width: 70px;
+      height: 55px;
+      font-size: 27px;
+    }
+    .resultImage{
+      float: left;
+      width: 400px;
+    }
+  }
